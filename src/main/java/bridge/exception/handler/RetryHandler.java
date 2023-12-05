@@ -18,7 +18,7 @@ public class RetryHandler{
             } catch (IllegalArgumentException e){
                 outputView.printException(e);
             } finally {
-                outputView.newLine();
+                //outputView.newLine();
             }
         }
     }
@@ -29,7 +29,7 @@ public class RetryHandler{
             } catch (IllegalArgumentException e){
                 checkExpectedException(expectedExceptions, e);
             } finally {
-                outputView.newLine();
+                //outputView.newLine();
             }
         }
     }
@@ -41,7 +41,7 @@ public class RetryHandler{
             } catch (IllegalArgumentException e) {
                 outputView.printException(e);
             } finally {
-                outputView.newLine();
+                //outputView.newLine();
             }
         }
     }
@@ -53,7 +53,7 @@ public class RetryHandler{
             } catch (IllegalArgumentException e) {
                 checkExpectedException(expectedExceptions, e);
             } finally {
-                outputView.newLine();
+                //outputView.newLine();
             }
         }
     }

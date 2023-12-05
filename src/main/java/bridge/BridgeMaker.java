@@ -32,10 +32,10 @@ public class BridgeMaker {
 
     private String convertToBridgeShape(Integer integer) {
         if(integer == 0){
-            return "U";
+            return "D";
         }
         if (integer == 1){
-            return "D";
+            return "U";
         }
         throw BridgeException.INVALID_BRIDGE_SHAPE.makeException();
     }
