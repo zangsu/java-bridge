@@ -1,5 +1,6 @@
 package bridge.domain.bridge;
 
+import bridge.exception.BridgeException;
 import java.util.List;
 
 public class Bridge {
@@ -15,7 +16,14 @@ public class Bridge {
     }
 
     public boolean movable(int position, String input) {
+        validatePosition(position);
         return bridgeInfo.get(position).equals(input);
+    }
+
+    private void validatePosition(int position) {
+        if(position < 0 || position >= bridgeInfo.size()) {
+            throw BridgeException.INVALID_POSITION.makeException();
+        }
     }
 
     public List<String> getBridgeInfo() {

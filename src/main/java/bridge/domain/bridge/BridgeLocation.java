@@ -4,7 +4,7 @@ import bridge.exception.BridgeException;
 import java.util.Map;
 import java.util.Optional;
 
-//todo 의미 없는 enum 같기도 해서 고민중
+// todo 의미 없는 enum 같기도 해서 고민중
 public enum BridgeLocation {
     UP("U"),
     DOWN("D"),
