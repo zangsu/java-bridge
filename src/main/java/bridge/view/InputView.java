@@ -28,6 +28,8 @@ public class InputView {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw BridgeException.INVALID_NUMBER_FORMAT.makeException();
+        } finally {
+            System.out.println();
         }
     }
 
