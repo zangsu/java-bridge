@@ -47,7 +47,7 @@ class BridgeTest {
         void 다리의_모양이_U_D가_아니면_예외_발생() {
             Assertions.assertThatIllegalArgumentException()
                     .isThrownBy(() -> new Bridge(List.of("D", "D", "A")))
-                    .withMessage(BridgeException.INVALID_BRIDGE_SHAPE.getMessage());
+                    .withMessage(BridgeException.INVALID_INPUT_FORMAT.getMessage());
         }
     }
 
@@ -69,12 +69,12 @@ class BridgeTest {
         @DisplayName("이동 가능한지 확인")
         void 이동_가능한지_확인() {
             Bridge bridge = new Bridge(List.of("D", "D", "U"));
-            assertTrue(bridge.movable(0, "D"));
-            assertTrue(bridge.movable(1, "D"));
-            assertTrue(bridge.movable(2, "U"));
-            assertFalse(bridge.movable(0, "U"));
-            assertFalse(bridge.movable(1, "U"));
-            assertFalse(bridge.movable(2, "D"));
+            assertTrue(bridge.movable(0, BridgeLocation.DOWN));
+            assertTrue(bridge.movable(1, BridgeLocation.DOWN));
+            assertTrue(bridge.movable(2, BridgeLocation.UP));
+            assertFalse(bridge.movable(0, BridgeLocation.UP));
+            assertFalse(bridge.movable(1, BridgeLocation.UP));
+            assertFalse(bridge.movable(2, BridgeLocation.DOWN));
         }
 
         @Test
@@ -82,10 +82,10 @@ class BridgeTest {
         void 잘못된_위치로_이동하면_예외_발생() {
             Bridge bridge = new Bridge(List.of("D", "D", "U"));
             Assertions.assertThatIllegalArgumentException()
-                    .isThrownBy(() -> bridge.movable(-1, "D"))
+                    .isThrownBy(() -> bridge.movable(-1, BridgeLocation.DOWN))
                     .withMessage(BridgeException.INVALID_POSITION.getMessage());
             Assertions.assertThatIllegalArgumentException()
-                    .isThrownBy(() -> bridge.movable(3, "D"))
+                    .isThrownBy(() -> bridge.movable(3, BridgeLocation.DOWN))
                     .withMessage(BridgeException.INVALID_POSITION.getMessage());
         }
     }

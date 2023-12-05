@@ -1,13 +1,15 @@
 package bridge.domain;
 
 import bridge.domain.bridge.Bridge;
+import bridge.domain.bridge.BridgeLocation;
 import bridge.exception.BridgeException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameState {
     private final Bridge bridge;
-    private List<String> userPath;
+    private List<BridgeLocation> userPath;
     private int currentPosition;
     private int roundNum;
 
@@ -26,7 +28,7 @@ public class GameState {
         return bridge.isEndOfBridge(currentPosition);
     }
 
-    public boolean move(String input) {
+    public boolean move(BridgeLocation input) {
         validateGameContinue();
         userPath.add(input);
         if (bridge.movable(currentPosition,input)) {
@@ -52,7 +54,9 @@ public class GameState {
     }
 
     public List<String> getUserPath() {
-        return userPath;
+        return userPath.stream()
+                .map(BridgeLocation::getMessage)
+                .collect(Collectors.toList());
     }
 
     public boolean isSuccess() {

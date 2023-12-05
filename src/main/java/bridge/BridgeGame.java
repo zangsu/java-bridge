@@ -1,6 +1,7 @@
 package bridge;
 
 import bridge.domain.GameState;
+import bridge.domain.bridge.BridgeLocation;
 import bridge.domain.bridge.BridgeMaker;
 import bridge.exception.handler.RetryHandler;
 import bridge.view.InputView;
@@ -55,7 +56,8 @@ public class BridgeGame {
      */
     public boolean move(GameState gameState) {
         String input = inputView.readMoving();
-        return gameState.move(input);
+        BridgeLocation moving = BridgeLocation.from(input);
+        return gameState.move(moving);
     }
 
     /**

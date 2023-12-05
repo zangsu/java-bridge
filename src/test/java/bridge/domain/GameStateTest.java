@@ -3,6 +3,7 @@ package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.domain.bridge.BridgeLocation;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -42,7 +43,8 @@ class GameStateTest {
             List<String> moveInput = List.of("D", "D", "U");
 
             // when
-            moveInput.forEach(move -> assertThat(gameState.move(move)).isTrue());
+            moveInput.forEach(move -> assertThat(gameState.move(BridgeLocation.from(move)))
+                    .isTrue());
 
             // then
             assertThat(gameState.isFinished()).isTrue();
@@ -56,7 +58,7 @@ class GameStateTest {
         void 이동_실패_테스트() {
             // given
             // when
-            assertThat(gameState.move("U")).isFalse();
+            assertThat(gameState.move(BridgeLocation.UP)).isFalse();
 
             // then
             assertThat(gameState.isFinished()).isFalse();
@@ -75,7 +77,7 @@ class GameStateTest {
             // given
             List<String> generatedBridge = List.of("D", "D", "U");
             GameState gameState = new GameState(generatedBridge);
-            gameState.move("D");
+            gameState.move(BridgeLocation.DOWN);
 
             // when
             gameState.retry();
