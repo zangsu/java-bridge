@@ -8,7 +8,20 @@ public class Bridge {
     private final List<String> bridgeInfo;
 
     public Bridge(List<String> bridge) {
+        validateBridge(bridge);
         this.bridgeInfo = bridge;
+    }
+
+    private void validateBridge(List<String> bridge) {
+        if(bridge.size() < BridgeMaker.MIN_BRIDGE_SIZE || bridge.size() > BridgeMaker.MAX_BRIDGE_SIZE) {
+            throw BridgeException.INVALID_BRIDGE_SIZE.makeException();
+        }
+        bridge.stream()
+                .filter(input -> !"U".equals(input) && !"D".equals(input))
+                .findAny()
+                .ifPresent((input) -> {
+                    throw BridgeException.INVALID_BRIDGE_SHAPE.makeException();
+                });
     }
 
     public boolean isEndOfBridge(int position) {
