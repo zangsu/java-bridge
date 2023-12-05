@@ -10,6 +10,11 @@ import java.util.List;
 public class OutputView {
 
     public static final String ERROR_PREFIX = "[ERROR] ";
+    public static final String MATCH = "O";
+    public static final String NOT_MATCH = "X";
+    public static final String EMPTY = " ";
+    public static final String SUCCESS = "성공";
+    public static final String FAIL = "실패";
 
     public void startGame() {
         System.out.println("다리 건너기 게임을 시작합니다.");
@@ -32,19 +37,19 @@ public class OutputView {
     private void printBridge(String location, List<String> bridge, List<String> userPath) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < userPath.size(); i++) {
-            result.add(getResult(location, userPath.get(i), bridge.get(i)));
+            result.add(getLocationResult(location, userPath.get(i), bridge.get(i)));
         }
         System.out.println("[ " + String.join(" | ", result) + " ]");
     }
 
-    private String getResult(String location, String userLocation, String bridgeLocation) {
+    private String getLocationResult(String location, String userLocation, String bridgeLocation) {
         if (!location.equals(userLocation)) {
-            return " ";
+            return EMPTY;
         }
         if (userLocation.equals(bridgeLocation)) {
-            return "O";
+            return MATCH;
         }
-        return "X";
+        return NOT_MATCH;
     }
 
     /**
@@ -61,9 +66,9 @@ public class OutputView {
 
     private String getSuccess(GameState gameResult) {
         if (gameResult.isSuccess()) {
-            return "성공";
+            return SUCCESS;
         }
-        return "실패";
+        return FAIL;
     }
 
     public void printException(IllegalArgumentException e) {

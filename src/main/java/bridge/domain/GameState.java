@@ -32,7 +32,7 @@ public class GameState {
     public boolean move(BridgeLocation input) {
         validateGameContinue();
         userPath.add(input);
-        if (bridge.movable(currentPosition,input)) {
+        if (bridge.isMovable(currentPosition,input)) {
             currentPosition++;
             return true;
         }

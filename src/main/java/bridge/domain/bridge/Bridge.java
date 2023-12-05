@@ -26,7 +26,7 @@ public class Bridge {
         return position == bridgeInfo.size();
     }
 
-    public boolean movable(int position, BridgeLocation input) {
+    public boolean isMovable(int position, BridgeLocation input) {
         validatePosition(position);
         return bridgeInfo.get(position).equals(input);
     }
