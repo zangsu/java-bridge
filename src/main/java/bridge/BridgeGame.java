@@ -17,7 +17,7 @@ public class BridgeGame {
 
     private final BridgeMaker bridgeMaker;
 
-    public BridgeGame(BridgeMaker bridgeMaker) {
+    public BridgeGame(final BridgeMaker bridgeMaker) {
         this.bridgeMaker = bridgeMaker;
     }
 
@@ -28,7 +28,7 @@ public class BridgeGame {
         outputView.printResult(gameState);
     }
 
-    private void playGame(GameState gameState) {
+    private void playGame(final GameState gameState) {
         while (!gameState.isFinished()) {
             boolean moveSuccess = move(gameState);
             outputView.printMap(gameState);
@@ -54,7 +54,7 @@ public class BridgeGame {
      * <p>
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private boolean move(GameState gameState) {
+    private boolean move(final GameState gameState) {
         String input = inputView.readMoving();
         BridgeLocation moving = BridgeLocation.from(input);
         return gameState.move(moving);
@@ -67,7 +67,7 @@ public class BridgeGame {
      *
      * @return
      */
-    private boolean retry(GameState gameState) {
+    private boolean retry(final GameState gameState) {
         if (inputView.restart()) {
             gameState.retry();
             return true;

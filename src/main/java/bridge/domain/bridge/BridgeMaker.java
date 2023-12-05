@@ -27,7 +27,7 @@ public class BridgeMaker {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    public List<String> makeBridge(int size) {
+    public List<String> makeBridge(final int size) {
         validateSize(size);
         return IntStream.range(0, size)
                 .map(i -> bridgeNumberGenerator.generate())
@@ -35,7 +35,7 @@ public class BridgeMaker {
                 .collect(Collectors.toList());
     }
 
-    private String convertToBridgeShape(Integer generatedValue) {
+    private String convertToBridgeShape(final int generatedValue) {
         if (generatedValue == DOWN_VALUE) {
             return DOWN;
         }
@@ -45,7 +45,7 @@ public class BridgeMaker {
         throw BridgeException.INVALID_BRIDGE_SHAPE.makeException();
     }
 
-    private void validateSize(int size) {
+    private void validateSize(final int size) {
         if (size < MIN_BRIDGE_SIZE || size > MAX_BRIDGE_SIZE) {
             throw BridgeException.INVALID_BRIDGE_SIZE.makeException();
         }

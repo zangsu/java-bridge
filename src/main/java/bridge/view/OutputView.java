@@ -1,6 +1,7 @@
 package bridge.view;
 
 import bridge.domain.GameState;
+import bridge.domain.bridge.BridgeLocation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,15 +27,17 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(GameState gameState) {
+    public void printMap(final GameState gameState) {
         List<String> bridge = gameState.getBridge();
         List<String> userPath = gameState.getUserPath();
-        printBridge("U", bridge, userPath);
-        printBridge("D", bridge, userPath);
+        printBridge(BridgeLocation.UP.getMessage(), bridge, userPath);
+        printBridge(BridgeLocation.DOWN.getMessage(), bridge, userPath);
         newLine();
     }
 
-    private void printBridge(String location, List<String> bridge, List<String> userPath) {
+    private void printBridge(final String location,
+                             final List<String> bridge,
+                             final List<String> userPath) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < userPath.size(); i++) {
             result.add(getLocationResult(location, userPath.get(i), bridge.get(i)));
@@ -42,7 +45,9 @@ public class OutputView {
         System.out.println("[ " + String.join(" | ", result) + " ]");
     }
 
-    private String getLocationResult(String location, String userLocation, String bridgeLocation) {
+    private String getLocationResult(final String location,
+                                     final String userLocation,
+                                     final String bridgeLocation) {
         if (!location.equals(userLocation)) {
             return EMPTY;
         }
@@ -57,14 +62,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(GameState gameResult) {
+    public void printResult(final GameState gameResult) {
         System.out.println("최종 게임 결과");
         printMap(gameResult);
         System.out.println("게임 성공 여부: " + getSuccess(gameResult));
         System.out.println("총 시도한 횟수: " + gameResult.getRoundNum());
     }
 
-    private String getSuccess(GameState gameResult) {
+    private String getSuccess(final GameState gameResult) {
         if (gameResult.isSuccess()) {
             return SUCCESS;
         }

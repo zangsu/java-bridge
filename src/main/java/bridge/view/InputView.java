@@ -53,7 +53,8 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public boolean restart() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.printf("게임을 다시 시도할지 여부를 입력해주세요. (재시도: %s, 종료: %s)", RESTART, QUIT);
+        System.out.println();
         return RetryHandler.getOrRetry(() -> getBoolean(RESTART, QUIT));
     }
 

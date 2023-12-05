@@ -13,7 +13,7 @@ public class GameState {
     private int currentPosition;
     private int roundNum;
 
-    public GameState(List<String> bridge) {
+    public GameState(final List<String> bridge) {
         this.bridge = new Bridge(bridge);
         this.userPath = new ArrayList<>();
         this.roundNum = 1;
@@ -29,10 +29,10 @@ public class GameState {
         return bridge.isEndOfBridge(currentPosition);
     }
 
-    public boolean move(BridgeLocation input) {
+    public boolean move(final BridgeLocation input) {
         validateGameContinue();
         userPath.add(input);
-        if (bridge.isMovable(currentPosition,input)) {
+        if (bridge.isMovable(currentPosition, input)) {
             currentPosition++;
             return true;
         }

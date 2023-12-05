@@ -10,11 +10,11 @@ public enum BridgeLocation {
 
     private final String inputMessage;
 
-    BridgeLocation(String inputMessage) {
+    BridgeLocation(final String inputMessage) {
         this.inputMessage = inputMessage;
     }
 
-    public static BridgeLocation from(String inputMessage) {
+    public static BridgeLocation from(final String inputMessage) {
         return Arrays.stream(values())
                 .filter(location -> location.inputMessage.equals(inputMessage))
                 .findFirst()
