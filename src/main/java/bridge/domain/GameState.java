@@ -16,7 +16,6 @@ public class GameState {
 
     private void initState() {
         this.currentPosition = 0;
-        this.roundNum = 0;
     }
 
     public boolean isFinished() {
@@ -32,5 +31,10 @@ public class GameState {
             return true;
         }
         return false;
+    }
+
+    public void retry() {
+        initState();
+        this.roundNum++;
     }
 }

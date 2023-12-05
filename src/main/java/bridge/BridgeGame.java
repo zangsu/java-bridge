@@ -25,11 +25,12 @@ public class BridgeGame {
         GameState gameState = initGame();
         while(!gameState.isFinished()) {
             boolean moveSuccess = move(gameState);
-        }
-        /*
             if(!moveSuccess){
                 retry(gameState);
             }
+        }
+        /*
+
         }
         outputView.printResult(gameState);*/
     }
@@ -62,7 +63,10 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(GameState gameState) {
+        if(inputView.askRestart()){
+            gameState.retry();
+        }
         //사용자 입력 받는다.
         /*if(재시도){
             gameState.retry();
