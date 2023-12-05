@@ -9,19 +9,20 @@ import java.util.stream.Collectors;
 
 public class GameState {
     private final Bridge bridge;
-    private List<BridgeLocation> userPath;
+    private final List<BridgeLocation> userPath;
     private int currentPosition;
     private int roundNum;
 
     public GameState(List<String> bridge) {
         this.bridge = new Bridge(bridge);
+        this.userPath = new ArrayList<>();
         this.roundNum = 1;
         initState();
     }
 
     private void initState() {
         this.currentPosition = 0;
-        this.userPath = new ArrayList<>();
+        this.userPath.clear();
     }
 
     public boolean isFinished() {
