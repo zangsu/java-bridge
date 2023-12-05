@@ -1,4 +1,4 @@
-package bridge;
+package bridge.domain.bridge;
 
 import bridge.exception.BridgeException;
 import java.util.List;
