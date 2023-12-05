@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 public class Bridge {
     //todo XXXInfo 라는 네이밍은 좋지 않다고 했는데
-    private final List<BridgeLocation> bridgeInfo;
+    private final List<BridgeLocation> bridgeLocations;
 
     public Bridge(final List<String> bridge) {
         validateBridge(bridge);
-        this.bridgeInfo = bridge.stream()
+        this.bridgeLocations = bridge.stream()
                 .map(BridgeLocation::from)
                 .collect(Collectors.toList());
     }
@@ -23,22 +23,22 @@ public class Bridge {
     }
 
     public boolean isEndOfBridge(final int position) {
-        return position == bridgeInfo.size();
+        return position == bridgeLocations.size();
     }
 
     public boolean isMovable(final int position, final BridgeLocation input) {
         validatePosition(position);
-        return bridgeInfo.get(position).equals(input);
+        return bridgeLocations.get(position).equals(input);
     }
 
     private void validatePosition(final int position) {
-        if (position < 0 || position >= bridgeInfo.size()) {
+        if (position < 0 || position >= bridgeLocations.size()) {
             throw BridgeException.INVALID_POSITION.makeException();
         }
     }
 
-    public List<String> getBridgeInfo() {
-        return bridgeInfo.stream()
+    public List<String> getBridgeLocations() {
+        return bridgeLocations.stream()
                 .map(BridgeLocation::getMessage)
                 .collect(Collectors.toList());
     }

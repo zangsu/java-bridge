@@ -51,7 +51,7 @@ public class GameState {
     }
 
     public List<String> getBridge() {
-        return bridge.getBridgeInfo();
+        return bridge.getBridgeLocations();
     }
 
     public List<String> getUserPath() {
