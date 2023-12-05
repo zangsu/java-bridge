@@ -1,14 +1,27 @@
 package bridge;
 
 import bridge.domain.GameState;
+import bridge.exception.handler.RetryHandler;
+import bridge.view.InputView;
+import bridge.view.OutputView;
+import java.util.List;
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  *  메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
  */
 public class BridgeGame {
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
+    private final BridgeMaker bridgeMaker;
+
+    public BridgeGame(BridgeMaker bridgeMaker) {
+        this.bridgeMaker = bridgeMaker;
+    }
 
     public void run(){
+        GameState gameState = initGame();
         /*GameState gameState = new GameState();
         while(!gameState.isFinished()){
             boolean moveSuccess = move(gameState);
@@ -17,6 +30,16 @@ public class BridgeGame {
             }
         }
         outputView.printResult(gameState);*/
+    }
+
+    private GameState initGame() {
+        List<String> bridge = RetryHandler.getOrRetry(this::getMakeBridge);
+        return new GameState(bridge);
+    }
+
+    private List<String> getMakeBridge() {
+        int bridgeSize = inputView.readBridgeSize();
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 
     /**
