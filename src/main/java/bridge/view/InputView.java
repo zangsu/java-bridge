@@ -24,9 +24,9 @@ public class InputView {
 
     private int getInteger() {
         String input = Console.readLine();
-        try{
+        try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw BridgeException.INVALID_NUMBER_FORMAT.makeException();
         }
     }
@@ -41,7 +41,7 @@ public class InputView {
 
     private String getMovingInput() {
         String input = Console.readLine();
-        if(MOVING_INPUT_PATTERN.matcher(input).matches()){
+        if (MOVING_INPUT_PATTERN.matcher(input).matches()) {
             return input;
         }
         throw BridgeException.INVALID_INPUT_FORMAT.makeException();
@@ -55,12 +55,12 @@ public class InputView {
         return RetryHandler.getOrRetry(() -> getBoolean(RESTART, QUIT));
     }
 
-    private boolean getBoolean(String trueInput, String falseInput){
+    private boolean getBoolean(String trueInput, String falseInput) {
         String input = Console.readLine();
-        if(trueInput.equals(input)){
+        if (trueInput.equals(input)) {
             return true;
         }
-        if(falseInput.equals(input)){
+        if (falseInput.equals(input)) {
             return false;
         }
         throw BridgeException.INVALID_INPUT_FORMAT.makeException();

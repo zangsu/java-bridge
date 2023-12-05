@@ -8,8 +8,7 @@ import bridge.view.OutputView;
 import java.util.List;
 
 /**
- * 다리 건너기 게임을 관리하는 클래스
- *  메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+ * 다리 건너기 게임을 관리하는 클래스 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
  */
 public class BridgeGame {
     private final InputView inputView = new InputView();
@@ -21,7 +20,7 @@ public class BridgeGame {
         this.bridgeMaker = bridgeMaker;
     }
 
-    public void run(){
+    public void run() {
         outputView.startGame();
         GameState gameState = initGame();
         playGame(gameState);
@@ -29,10 +28,10 @@ public class BridgeGame {
     }
 
     private void playGame(GameState gameState) {
-        while(!gameState.isFinished()) {
+        while (!gameState.isFinished()) {
             boolean moveSuccess = move(gameState);
             outputView.printMap(gameState);
-            if(moveSuccess || retry(gameState)){
+            if (moveSuccess || retry(gameState)) {
                 continue;
             }
             break;
@@ -67,7 +66,7 @@ public class BridgeGame {
      * @return
      */
     public boolean retry(GameState gameState) {
-        if(inputView.restart()){
+        if (inputView.restart()) {
             gameState.retry();
             return true;
         }

@@ -3,7 +3,6 @@ package bridge.view;
 import bridge.domain.GameState;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -30,7 +29,7 @@ public class OutputView {
         newLine();
     }
 
-    private void printBridge(String location,List<String> bridge, List<String> userPath) {
+    private void printBridge(String location, List<String> bridge, List<String> userPath) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < userPath.size(); i++) {
             result.add(getResult(location, userPath.get(i), bridge.get(i)));
@@ -39,10 +38,10 @@ public class OutputView {
     }
 
     private String getResult(String location, String userLocation, String bridgeLocation) {
-        if(!location.equals(userLocation)){
+        if (!location.equals(userLocation)) {
             return " ";
         }
-        if(userLocation.equals(bridgeLocation)){
+        if (userLocation.equals(bridgeLocation)) {
             return "O";
         }
         return "X";
@@ -61,13 +60,13 @@ public class OutputView {
     }
 
     private String getSuccess(GameState gameResult) {
-        if(gameResult.isSuccess()){
+        if (gameResult.isSuccess()) {
             return "성공";
         }
         return "실패";
     }
 
-    public void printException(IllegalArgumentException e){
+    public void printException(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 

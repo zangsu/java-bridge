@@ -18,7 +18,7 @@ public enum BridgeException {
         this.exception = new IllegalArgumentException(this.message);
     }
 
-    public IllegalArgumentException makeException(){
+    public IllegalArgumentException makeException() {
         return exception;
     }
 
