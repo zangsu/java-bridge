@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.GameState;
+import bridge.domain.gameState.GameState;
 import bridge.domain.bridge.BridgeLocation;
 import bridge.domain.bridge.BridgeMaker;
 import bridge.exception.handler.RetryHandler;

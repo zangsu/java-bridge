@@ -1,4 +1,4 @@
-package bridge.domain;
+package bridge.domain.gameState;
 
 import bridge.domain.bridge.Bridge;
 import bridge.domain.bridge.BridgeLocation;
@@ -11,12 +11,12 @@ public class GameState {
     private final Bridge bridge;
     private final List<BridgeLocation> userPath;
     private int currentPosition;
-    private int roundNum;
+    private final TryNumber tryNumber;
 
     public GameState(final List<String> bridge) {
         this.bridge = new Bridge(bridge);
         this.userPath = new ArrayList<>();
-        this.roundNum = 1;
+        this.tryNumber = new TryNumber();
         initState();
     }
 
@@ -47,7 +47,7 @@ public class GameState {
 
     public void retry() {
         initState();
-        this.roundNum++;
+        tryNumber.nextTry();
     }
 
     public List<String> getBridge() {
@@ -64,7 +64,7 @@ public class GameState {
         return bridge.isEndOfBridge(currentPosition);
     }
 
-    public int getRoundNum() {
-        return roundNum;
+    public int getTryRound() {
+        return tryNumber.getTryNum();
     }
 }

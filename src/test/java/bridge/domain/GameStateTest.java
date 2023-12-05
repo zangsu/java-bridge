@@ -4,9 +4,9 @@ package bridge.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import bridge.domain.bridge.BridgeLocation;
+import bridge.domain.gameState.GameState;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ class GameStateTest {
 
         // then
         assertThat(gameState.isFinished()).isFalse();
-        assertThat(gameState.getRoundNum()).isEqualTo(1);
+        assertThat(gameState.getTryRound()).isEqualTo(1);
         assertThat(gameState.isSuccess()).isFalse();
     }
 
@@ -48,7 +48,7 @@ class GameStateTest {
 
             // then
             assertThat(gameState.isFinished()).isTrue();
-            assertThat(gameState.getRoundNum()).isEqualTo(1);
+            assertThat(gameState.getTryRound()).isEqualTo(1);
             assertThat(gameState.isSuccess()).isTrue();
             assertThat(gameState.getUserPath()).isEqualTo(moveInput);
         }
@@ -62,7 +62,7 @@ class GameStateTest {
 
             // then
             assertThat(gameState.isFinished()).isFalse();
-            assertThat(gameState.getRoundNum()).isEqualTo(1);
+            assertThat(gameState.getTryRound()).isEqualTo(1);
             assertThat(gameState.isSuccess()).isFalse();
         }
     }
@@ -86,7 +86,7 @@ class GameStateTest {
 
             // then
             assertThat(gameState.isFinished()).isFalse();
-            assertThat(gameState.getRoundNum()).isEqualTo(4);
+            assertThat(gameState.getTryRound()).isEqualTo(4);
             assertThat(gameState.isSuccess()).isFalse();
             assertThat(gameState.getBridge()).isEqualTo(generatedBridge);
             assertThat(gameState.getUserPath()).isEqualTo(List.of());

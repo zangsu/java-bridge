@@ -1,6 +1,6 @@
 package bridge.view;
 
-import bridge.domain.GameState;
+import bridge.domain.gameState.GameState;
 import bridge.domain.bridge.BridgeLocation;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +66,7 @@ public class OutputView {
         System.out.println("최종 게임 결과");
         printMap(gameResult);
         System.out.println("게임 성공 여부: " + getSuccess(gameResult));
-        System.out.println("총 시도한 횟수: " + gameResult.getRoundNum());
+        System.out.println("총 시도한 횟수: " + gameResult.getTryRound());
     }
 
     private String getSuccess(final GameState gameResult) {
