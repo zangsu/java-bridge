@@ -10,8 +10,13 @@ import java.util.stream.IntStream;
  */
 public class BridgeMaker {
 
+    //상수는 private? public?
     public static final int MIN_BRIDGE_SIZE = 3;
     public static final int MAX_BRIDGE_SIZE = 20;
+    public static final int DOWN_VALUE = 0;
+    public static final int UP_VALUE = 1;
+    public static final String DOWN = "D";
+    public static final String UP = "U";
     private final BridgeNumberGenerator bridgeNumberGenerator;
 
     public BridgeMaker(BridgeNumberGenerator bridgeNumberGenerator) {
@@ -25,17 +30,17 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         validateSize(size);
         return IntStream.range(0, size)
-                .mapToObj(i -> bridgeNumberGenerator.generate())
-                .map(this::convertToBridgeShape)
+                .map(i -> bridgeNumberGenerator.generate())
+                .mapToObj(this::convertToBridgeShape)
                 .collect(Collectors.toList());
     }
 
-    private String convertToBridgeShape(Integer integer) {
-        if (integer == 0) {
-            return "D";
+    private String convertToBridgeShape(Integer generatedValue) {
+        if (generatedValue == DOWN_VALUE) {
+            return DOWN;
         }
-        if (integer == 1) {
-            return "U";
+        if (generatedValue == UP_VALUE) {
+            return UP;
         }
         throw BridgeException.INVALID_BRIDGE_SHAPE.makeException();
     }
