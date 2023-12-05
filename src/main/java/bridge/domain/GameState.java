@@ -10,11 +10,9 @@ public class GameState {
     private List<String> userPath;
     private int currentPosition;
     private int roundNum;
-    private boolean success;
 
     public GameState(List<String> bridge) {
         this.bridge = new Bridge(bridge);
-        this.success = false;
         this.roundNum = 1;
         initState();
     }
@@ -25,7 +23,7 @@ public class GameState {
     }
 
     public boolean isFinished() {
-        return success || bridge.isEndOfBridge(currentPosition);
+        return bridge.isEndOfBridge(currentPosition);
     }
 
     public boolean move(String input) {
@@ -33,9 +31,6 @@ public class GameState {
         userPath.add(input);
         if (bridge.movable(currentPosition,input)) {
             currentPosition++;
-            if (isFinished()) {
-                success = true;
-            }
             return true;
         }
         return false;
@@ -61,7 +56,7 @@ public class GameState {
     }
 
     public boolean isSuccess() {
-        return success;
+        return bridge.isEndOfBridge(currentPosition);
     }
 
     public int getRoundNum() {
