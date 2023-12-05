@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 public class InputView {
 
     public static final Pattern MOVING_INPUT_PATTERN = Pattern.compile("[UD]");
+    public static final String RESTART = "R";
+    public static final String QUIT = "Q";
 
     /**
      * 다리의 길이를 입력받는다.
@@ -48,9 +50,9 @@ public class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public boolean askRestart() {
+    public boolean restart() {
         System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
-        return RetryHandler.getOrRetry(() -> getBoolean("R", "Q"));
+        return RetryHandler.getOrRetry(() -> getBoolean(RESTART, QUIT));
     }
 
     private boolean getBoolean(String trueInput, String falseInput){

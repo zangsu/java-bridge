@@ -1,5 +1,10 @@
 package bridge.view;
 
+import bridge.domain.GameState;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -16,7 +21,36 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap() {
+    public void printMap(GameState gameState) {
+        List<String> bridge = gameState.getBridge();
+        List<String> userPath = gameState.getUserPath();
+        printBridge("U", bridge, userPath);
+        printBridge("D", bridge, userPath);
+    }
+
+    private void printBridge(String location,List<String> bridge, List<String> userPath) {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < userPath.size(); i++) {
+            result.add(getResult(location, userPath.get(i), bridge.get(i)));
+        }
+        System.out.println("[ " + String.join(" | ", result) + " ]");
+    }
+
+    private String getResult(String location, String userLocation, String bridgeLocation) {
+        if(!location.equals(userLocation)){
+            return " ";
+        }
+        if(userLocation.equals(bridgeLocation)){
+            return "O";
+        }
+        return "X";
+    }
+
+    private String filterLocation(String location, String s) {
+        if(location.equals(s)){
+            return s;
+        }
+        return " ";
     }
 
     /**

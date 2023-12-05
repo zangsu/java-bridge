@@ -1,7 +1,6 @@
 package bridge;
 
 import bridge.domain.GameState;
-import bridge.domain.bridge.BridgeLocation;
 import bridge.exception.handler.RetryHandler;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -25,14 +24,12 @@ public class BridgeGame {
         GameState gameState = initGame();
         while(!gameState.isFinished()) {
             boolean moveSuccess = move(gameState);
+            outputView.printMap(gameState);
             if(!moveSuccess){
                 retry(gameState);
             }
         }
-        /*
-
-        }
-        outputView.printResult(gameState);*/
+        //outputView.printResult(gameState);
     }
 
     private GameState initGame() {
@@ -52,10 +49,7 @@ public class BridgeGame {
      */
     public boolean move(GameState gameState) {
         String input = inputView.readMoving();
-        //BridgeLocation bridgeLocation = BridgeLocation.from(input);
         return gameState.move(input);
-        //사용자 입력 받는다.
-        /*return gameState.move(입력);*/
     }
 
     /**
@@ -64,12 +58,8 @@ public class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void retry(GameState gameState) {
-        if(inputView.askRestart()){
+        if(inputView.restart()){
             gameState.retry();
         }
-        //사용자 입력 받는다.
-        /*if(재시도){
-            gameState.retry();
-        }*/
     }
 }
