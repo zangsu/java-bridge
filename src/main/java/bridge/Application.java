@@ -6,7 +6,8 @@ import bridge.domain.bridge.BridgeRandomNumberGenerator;
 public class Application {
 
     public static void main(String[] args) {
-        BridgeGame bridgeGame = new BridgeGame(new BridgeMaker(new BridgeRandomNumberGenerator()));
+        BridgeMaker randomBridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        BridgeGame bridgeGame = new BridgeGame(randomBridgeMaker);
         bridgeGame.run();
     }
 }
